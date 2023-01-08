@@ -10,3 +10,43 @@
 // R0 >= 0, R1 >= 0, and R0*R1 < 32768.
 
 // Put your code here.
+
+@sum
+M=0
+@R0
+D=M
+@n
+M=D // n = RAM[0]
+@i
+M=0 // i = 0
+
+(LOOP)
+  @i
+  D=M
+  @n
+  D=D-M
+  @STOP
+  D;JEQ // if i == j jump to STOP 
+
+  @R1
+  D=M // RAM[1]
+
+  @sum
+  M=M+D // sum = sum + RAM[1]
+
+  @i
+  M=M+1 // i = i + 1
+
+  @LOOP
+  0;JMP
+
+(STOP) 
+  @sum
+  D=M
+  @R2
+  M=D // RAM[2] = sum
+
+(END) // Infinite loop
+  @END
+  0;JMP
+
